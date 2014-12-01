@@ -15,6 +15,7 @@
   "author": "Miles Zimmerman",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.9.3",
     "dotfun": "^0.9.1",
     "express": "^4.10.4",
     "firebase": "^2.0.5",
