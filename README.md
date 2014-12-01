@@ -1,4 +1,4 @@
 Data.Chapman
 ============
 
-https://mileszim.github.io/chapmanu-data
+http://chapmanu.maztek.io/
