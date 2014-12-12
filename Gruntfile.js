@@ -10,10 +10,12 @@ module.exports = function(grunt) {
     
     // Deploy
     'gh-pages': {
-      options: {
-        base: 'dist'
-      },
-      src: ['**']
+      build: {
+        options: {
+          base: 'dist'
+        },
+        src: ['**']
+      }
     }
     
   });
@@ -25,6 +27,7 @@ module.exports = function(grunt) {
 
 
   // Tasks
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['exec:build', 'gh-pages:build']);
+  grunt.registerTask('build', ['exec:build', 'gh-pages:build']);
 
 };  
