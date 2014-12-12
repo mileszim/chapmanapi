@@ -10,6 +10,7 @@ Router.map(function() {
   this.resource('parking');
   this.route('weather');
   this.route('social');
+  this.route('jobs');
 });
 
 export default Router;
