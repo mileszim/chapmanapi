@@ -1,0 +1,17 @@
+<div class="column-5">
+  <article class="story">
+    <a href="#" class="tag"><strong><svg class="icon"><use {{bind-attr xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=service_icon}}></use></svg> {{author.user_name}}</strong></a>
+  	<a href="#" class="permalink">
+  		<h1 class="title">{{text}}</h1>
+  		<p class="date">{{timestamp}}</p>
+    
+  		{{#if hasPhotos}}
+    		<div {{bind-attr class=":story-bg" style=background}}>
+          {{#each photo in photos}}
+            <img {{bind-attr src=photo.url}}>
+          {{/each}}
+    		</div>
+      {{/if}}
+    </a>
+  </article>
+</div>

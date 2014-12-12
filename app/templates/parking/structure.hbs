@@ -1,0 +1,32 @@
+<div class="column-5">
+  <article class="story">
+    <a href="#" class="tag"><strong>{{progressText}}</strong></a>
+  	<a href="#" class="permalink">
+  		<h1 class="title">{{name}}</h1>
+  		<p class="date progressbar">{{jqui-progress-bar value=used max=capacity}}</p>
+    
+  		<div class="story-bg" style="">
+        <table class="table table-full table-border-all table-fill-even" style="width:100%">
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>Available</th>
+              <th>Capacity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each level in levels}}
+              <tr>
+                <td>{{level.name}}</td>
+                <td>{{level.available}}</td>
+                <td>{{level.capacity}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+  		</div>
+    </a>
+  	<footer class="footer">
+  	</footer>
+  </article>
+</div>

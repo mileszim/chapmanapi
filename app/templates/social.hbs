@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="column-16">
+    <h3 class="component-heading">Social API</h3>
+  </div>
+</div>
+
+<div class="row gutters">
+  <div class="row gutter">
+    {{#each post in model}}
+      {{render 'social/post' post}}
+    {{/each}}
+  </div>
+</div>

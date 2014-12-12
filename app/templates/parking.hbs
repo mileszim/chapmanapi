@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="column-16">
+    <h3 class="component-heading">Realtime Parking API</h3>
+  </div>
+</div>
+
+<div class="row gutters">
+  <div class="row gutter">
+    {{#each structure in model}}
+      {{render 'parking/structure' structure}}
+    {{/each}}
+  </div>
+</div>

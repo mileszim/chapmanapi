@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="column-16">
+    <header id="banner" class="banner" role="banner">
+      <div class="inset">
+        <div class="banner-inset">
+          <h1 id="logo" class="logo">
+    				<a class="logo-href" href="//www.chapman.edu">
+    					<img src="//www2.chapman.edu/assets/images/chapman-logo-horizontal.svg" alt="Chapman University">
+    				</a>
+    			</h1>
+
+    			<nav id="nav" class="nav" role="navigation">
+    				<a class="nav-glyph" href="#nav"><svg class="icon"><use xlink:href="/assets/images/sprite.svg#menu"/></svg></a>
+    				<a class="nav-glyph nav-glyph--back"><svg><use xlink:href="/assets/images/sprite.svg#menu"/></svg></a>
+
+    				<ul class="nav-menu">
+              {{#link-to 'index' tagName='li'}}
+                {{#link-to 'index'}}<span>Data API</span>{{/link-to}}
+              {{/link-to}}
+              {{#link-to 'parking' tagName='li'}}
+                {{#link-to 'parking'}}<span>Parking</span>{{/link-to}}
+              {{/link-to}}
+              {{#link-to 'weather' tagName='li'}}
+                {{#link-to 'weather'}}<span>Weather</span>{{/link-to}}
+              {{/link-to}}
+              {{#link-to 'social' tagName='li'}}
+                {{#link-to 'social'}}<span>Social</span>{{/link-to}}
+              {{/link-to}}
+    				</ul>
+    			</nav>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column-16">
+    {{outlet}}
+  </div>
+</div>
