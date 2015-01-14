@@ -9,6 +9,7 @@
         "url": "https://github.com/mileszim/chapmanapi"
     },
     "host": "chapmanuniversity.firebaseio.com",
+    "basePath": "/",
     "schemes": [
         "https"
     ],
@@ -49,7 +50,10 @@
                         "in": "path",
                         "description": "Name of parking structure (barrera, lastinger, west)",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "barrera", "lastinger", "west"
+                        ]
                     }
                 ],
                 "responses": {
