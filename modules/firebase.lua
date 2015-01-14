@@ -2,7 +2,7 @@
 
 local Firebase = {}
 
-local function Firebase:nodePath(node)
+function Firebase:nodePath(node)
   return self.root .. '/' .. node .. '.json'
 end
 
