@@ -17,26 +17,6 @@
         "application/json"
     ],
     "paths": {
-        "/forecast.json": {
-            "get": {
-                "summary": "Weather forecasts",
-                "description": "Endpoint for Chapman weather forecasts, from https://forecast.chapman.edu\n",
-                "tags": [
-                    "Weather"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Array of forecast weather objects",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Weather"
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/parking/{structure}.json": {
             "get": {
                 "summary": "Parking Availability/Status",
@@ -99,6 +79,26 @@
                         "description": "Object containing the current weather status",
                         "schema": {
                             "$ref": "#/definitions/Weather"
+                        }
+                    }
+                }
+            }
+        },
+        "/forecast.json": {
+            "get": {
+                "summary": "Weather forecasts",
+                "description": "Endpoint for Chapman weather forecasts, from https://forecast.chapman.edu\n",
+                "tags": [
+                    "Weather"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of forecast weather objects",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Weather"
+                            }
                         }
                     }
                 }
