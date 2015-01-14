@@ -2,13 +2,11 @@
     "swagger": "2.0",
     "info": {
         "title": "Chapman University API",
-        "description": "Realtime API for Chapman data",
-        "version": "0.1",
-        "contact": {
-            "name": "Miles Zimmerman",
-            "email": "miles@maztek.io",
-            "url": "https://github.com/mileszim"
-        }
+        "description": "Realtime API for Chapman data. For more information see https://github.com/mileszim/chapmanapi",
+        "version": "0.1"
+    },
+    "externalDocs": {
+        "url": "https://github.com/mileszim/chapmanapi"
     },
     "host": "chapmanuniversity.firebaseio.com",
     "schemes": [
