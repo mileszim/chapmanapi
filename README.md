@@ -1,9 +1,9 @@
 Chapman API
 ===========
 
-Realtime API for Chapman University data.
+(Unofficial) Chapman University realtime API
 
-See examples/usage at http://mileszim.github.io/chapman-api
+See examples/usage at https://mileszim.github.io/chapmanapi
 
 ### Details
 
