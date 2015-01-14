@@ -1,0 +1,262 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Chapman University API",
+        "description": "Realtime API for Chapman data",
+        "version": "0.1",
+        "contact": {
+            "name": "Miles Zimmerman",
+            "email": "miles@maztek.io",
+            "url": "https://github.com/mileszim"
+        }
+    },
+    "host": "chapmanuniversity.firebaseio.com",
+    "schemes": [
+        "https"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/forecast.json": {
+            "get": {
+                "summary": "Weather forecasts",
+                "description": "Endpoint for Chapman weather forecasts, from https://forecast.chapman.edu\n",
+                "tags": [
+                    "Weather"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of forecast weather objects",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Weather"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/parking/{structure}.json": {
+            "get": {
+                "summary": "Parking Availability/Status",
+                "description": "Endpoint for live parking availability for each structure and level.\n",
+                "tags": [
+                    "Parking"
+                ],
+                "parameters": [
+                    {
+                        "name": "structure",
+                        "in": "path",
+                        "description": "Name of parking structure (barrera, lastinger, west)",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Object containing status of parking structure and its levels",
+                        "examples": {
+                            "application/json": "{\n  \"name\":\"Lastinger\",\n  \"available\": 175,\n  \"capacity\": 871,\n  \"levels\": {\n    \"all\": {\n      \"name\": \"All\",\n      \"available\": 175,\n      \"capacity\": 871\n    },\n    \"l1\": {\n      \"available\": 41,\n      \"capacity\": 401,\n      \"name\": \"L1\"\n    },\n    \"l2\": {\n      \"available\": 134,\n      \"capacity\":470,\n      \"name\":\"L2\"\n    }\n  }\n}"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Structure"
+                        }
+                    }
+                }
+            }
+        },
+        "/social.json": {
+            "get": {
+                "summary": "Social Posts",
+                "description": "Endpoint for recent social posts about/from Chapman University, from https://social.chapman.edu",
+                "tags": [
+                    "Social"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of social posts",
+                        "schema": {
+                            "type": "array",
+                            "$ref": "#/definitions/Post"
+                        }
+                    }
+                }
+            }
+        },
+        "/weather.json": {
+            "get": {
+                "summary": "Current weather data",
+                "description": "Endpoint for the current weather data at Chapman, from https://forecast.chapman.edu\n",
+                "tags": [
+                    "Weather"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Object containing the current weather status",
+                        "schema": {
+                            "$ref": "#/definitions/Weather"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Structure": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Full name of structure"
+                },
+                "capacity": {
+                    "type": "integer",
+                    "description": "Total capacity of lot"
+                },
+                "available": {
+                    "type": "integer",
+                    "description": "Current number of spots available"
+                },
+                "levels": {
+                    "$ref": "#/definitions/Level"
+                }
+            }
+        },
+        "Level": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of level"
+                },
+                "capacity": {
+                    "type": "integer",
+                    "description": "Total capacity of level"
+                },
+                "available": {
+                    "type": "integer",
+                    "description": "Current number of spots available"
+                }
+            }
+        },
+        "Post": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Unique social post ID"
+                },
+                "service": {
+                    "type": "string",
+                    "description": "(twitter, facebook, instagram, wordpress) service post was created on"
+                },
+                "text": {
+                    "type": "string",
+                    "description": "Text content of post if exists"
+                },
+                "timestamp": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "ISO8601 timestamp of post"
+                },
+                "external_uri": {
+                    "type": "string",
+                    "description": "External URI to the post on its service"
+                },
+                "author": {
+                    "$ref": "#/definitions/Author"
+                },
+                "photos": {
+                    "type": "array",
+                    "description": "Array of photos from post",
+                    "items": {
+                        "$ref": "#/definitions/Photo"
+                    }
+                }
+            }
+        },
+        "Author": {
+            "properties": {
+                "avatar": {
+                    "type": "string",
+                    "description": "URL to the author's avatar/profile image"
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Author's full name as represented by their service"
+                },
+                "user_name": {
+                    "type": "string",
+                    "description": "The Author's unique username/identifier"
+                }
+            }
+        },
+        "Photo": {
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "Original image URL"
+                },
+                "standard": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string",
+                            "description": "URL to standard size image"
+                        }
+                    }
+                },
+                "thumb": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string",
+                            "description": "URL to thumb size image"
+                        }
+                    }
+                }
+            }
+        },
+        "Weather": {
+            "properties": {
+                "condition": {
+                    "type": "string",
+                    "description": "English description of condition"
+                },
+                "dewpoint": {
+                    "type": "integer",
+                    "description": "Dewpoint temp in degrees Fahrenheit"
+                },
+                "icon": {
+                    "type": "string",
+                    "description": "URL of icon representing current weather"
+                },
+                "rel_hum": {
+                    "type": "integer",
+                    "description": "Percentage of atmospheric relative humidity"
+                },
+                "temp": {
+                    "type": "integer",
+                    "description": "Temperature in degrees Fahrenheit"
+                },
+                "wind_direction": {
+                    "type": "string",
+                    "description": "Overall compass direction of wind"
+                },
+                "wind_speed": {
+                    "type": "string",
+                    "description": "Overall wind speed"
+                },
+                "day": {
+                    "type": "string",
+                    "description": "Abbreviated day of the week if forecast",
+                    "default": null
+                },
+                "time": {
+                    "type": "string",
+                    "description": "Hour of forecast (e.g. '8pm') if forecast",
+                    "default": null
+                }
+            }
+        }
+    }
+}

@@ -1,31 +1,99 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Chapman Data</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <title>Swagger UI</title>
+  <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+  <link href='css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='css/reset.css' media='print' rel='stylesheet' type='text/css'/>
+  <link href='css/screen.css' media='print' rel='stylesheet' type='text/css'/>
+  <script type="text/javascript" src="lib/shred.bundle.js"></script>
+  <script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
+  <script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
+  <script src='lib/jquery.wiggle.min.js' type='text/javascript'></script>
+  <script src='lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
+  <script src='lib/handlebars-1.0.0.js' type='text/javascript'></script>
+  <script src='lib/underscore-min.js' type='text/javascript'></script>
+  <script src='lib/backbone-min.js' type='text/javascript'></script>
+  <script src='lib/swagger.js' type='text/javascript'></script>
+  <script src='lib/swagger-client.js' type='text/javascript'></script>
+  <script src='swagger-ui.js' type='text/javascript'></script>
+  <script src='lib/highlight.7.3.pack.js' type='text/javascript'></script>
 
-    
-<meta name="datadotchapman/config/environment" content="%7B%22modulePrefix%22%3A%22datadotchapman%22%2C%22environment%22%3A%22production%22%2C%22baseURL%22%3A%22/%22%2C%22locationType%22%3A%22hash%22%2C%22contentSecurityPolicy%22%3A%7B%22default-src%22%3A%22%27none%27%20%27unsafe-eval%27%20https%3A//*.firebase.io/%20https%3A//*.firebaseio.com/%22%2C%22script-src%22%3A%22%27self%27%20%27unsafe-eval%27%20https%3A//*.firebase.io/%20https%3A//*.firebaseio.com%22%2C%22font-src%22%3A%22%27self%27%20http%3A//fonts.gstatic.com%22%2C%22connect-src%22%3A%22%27self%27%20%27unsafe-eval%27%20wss%3A//*.firebaseio.com/%20https%3A//auth.firebase.com/%22%2C%22img-src%22%3A%22%27self%27%20data%3A%20http%3A//www2.chapman.edu/%20https%3A//res.cloudinary.com/%22%2C%22style-src%22%3A%22%27self%27%20%27unsafe-inline%27%20http%3A//fonts.googleapis.com%22%2C%22media-src%22%3A%22%27self%27%22%7D%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%7D%2C%22APP%22%3A%7B%7D%2C%22contentSecurityPolicyHeader%22%3A%22Content-Security-Policy-Report-Only%22%2C%22exportApplicationGlobal%22%3Afalse%7D" />
+  <!-- enabling this will enable oauth2 implicit scope support -->
+  <script src='lib/swagger-oauth.js' type='text/javascript'></script>
+  <script type="text/javascript">
+    $(function () {
+      var url = window.location.search.match(/url=([^&]+)/);
+      if (url && url.length > 1) {
+        url = url[1];
+      } else {
+        url = "https://mileszim.github.io/chapmanapi-spec.json";
+      }
+      window.swaggerUi = new SwaggerUi({
+        url: url,
+        dom_id: "swagger-ui-container",
+        supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
+        onComplete: function(swaggerApi, swaggerUi){
+          log("Loaded SwaggerUI");
+          if(typeof initOAuth == "function") {
+            /*
+            initOAuth({
+              clientId: "your-client-id",
+              realm: "your-realms",
+              appName: "your-app-name"
+            });
+            */
+          }
+          $('pre code').each(function(i, e) {
+            hljs.highlightBlock(e)
+          });
+        },
+        onFailure: function(data) {
+          log("Unable to Load SwaggerUI");
+        },
+        docExpansion: "none",
+        sorter : "alpha"
+      });
 
+      function addApiKeyAuthorization() {
+        var key = $('#input_apiKey')[0].value;
+        log("key: " + key);
+        if(key && key.trim() != "") {
+            log("added key " + key);
+            window.authorizations.add("api_key", new ApiKeyAuthorization("api_key", key, "query"));
+        }
+      }
 
+      $('#input_apiKey').change(function() {
+        addApiKeyAuthorization();
+      });
 
-    <link rel="stylesheet" href="assets/vendor-e811b5b5abd4f25311abb2643c4fd186.css">
-    <link rel="stylesheet" href="assets/datadotchapman-7aad6b786727db4a9f7e6a7154b3a87f.css">
+      // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
+      /*
+        var apiKey = "myApiKeyXXXX123456789";
+        $('#input_apiKey').val(apiKey);
+        addApiKeyAuthorization();
+      */
 
-    
+      window.swaggerUi.load();
+  });
+  </script>
+</head>
 
-  </head>
-  <body class="container">
-    
+<body class="swagger-section">
+<div id='header'>
+  <div class="swagger-ui-wrap">
+    <a id="logo" href="http://swagger.io">swagger</a>
+    <form id='api_selector'>
+      <div class='input'><input placeholder="https://chapmanuniversity.firebase.io/" id="input_baseUrl" name="baseUrl" type="text"/></div>
+      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
+      <div class='input'><a id="explore" href="#">Explore</a></div>
+    </form>
+  </div>
+</div>
 
-
-    <script src="assets/vendor-1dbe45520361c91699464d8c319b9fcb.js"></script>
-    <script src="assets/datadotchapman-8458687a63c8713a730e077c17d87fd4.js"></script>
-
-    
-
-  </body>
+<div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
+<div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+</body>
 </html>
