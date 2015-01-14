@@ -4,6 +4,12 @@
 -- local parking = require('mileszim/chapmanapi/modules/parking.lua')
 --
 
+
+-- Deps
+local _ = require('underscore')
+
+
+-- Namespace
 local Parking = {}
 
 
@@ -34,14 +40,14 @@ function Parking.mapStructure(s)
     name = s['Name'],
     capacity = s['Capacity'],
     available = s['CurrentCount'],
-    levels = nameKey(_.map(s['Levels'], mapLevel))
+    levels = Parking.nameKey(_.map(s['Levels'], Parking.mapLevel))
   }
 end
 
 
 -- Convert standard format into our format
 function Parking.parse(content)
-  return nameKey(_.map(content, mapStructure))
+  return Parking.nameKey(_.map(content, Parking.mapStructure))
 end
 
 
