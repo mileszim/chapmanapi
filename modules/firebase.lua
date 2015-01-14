@@ -94,8 +94,8 @@ end
 
 
 -- Export
-local function init(root, authtoken)
-  return Firebase:new({ root = root, authtoken = authtoken })
+local function init(params)
+  return Firebase:new(params)
 end
 
 return { init = init }
