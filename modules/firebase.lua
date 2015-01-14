@@ -1,7 +1,5 @@
 -- Firebase module for Webscript.io
 
-
--- Firebase
 local Firebase = {}
 
 local function Firebase:nodePath(node)
