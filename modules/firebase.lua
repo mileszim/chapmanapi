@@ -1,5 +1,7 @@
 -- Firebase module for Webscript.io
 
+
+-- Firebase
 local Firebase = {}
 
 local function Firebase:nodePath(node)
@@ -85,10 +87,17 @@ function Firebase:remove(node)
 	return req.statuscode
 end
 
-
 function Firebase:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   return o
 end
+
+
+-- Export
+local function init(root, authtoken)
+  return Firebase:new({ root = root, authtoken = authtoken })
+end
+
+return { init = init }
