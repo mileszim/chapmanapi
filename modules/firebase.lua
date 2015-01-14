@@ -23,7 +23,7 @@ function Firebase:get(node)
     method = 'GET',
     url = self:nodePath(node),
     params = {
-      auth = self.authtoken
+      auth = self.auth
     }
   }
   if req.statuscode == 200 then
@@ -39,7 +39,7 @@ function Firebase:set(node, content)
     method = 'PUT',
     url = self:nodePath(node),
     params = {
-      auth = self.authtoken
+      auth = self.auth
     },
     data = content
   }
@@ -56,7 +56,7 @@ function Firebase:push(node, content)
     method = 'POST',
     url = self:nodePath(node),
     params = {
-      auth = self.authtoken
+      auth = self.auth
     },
     data = content
   }
@@ -73,7 +73,7 @@ function Firebase:update(node, content)
     method = 'PATCH',
     url = self:nodePath(node),
     params = {
-      auth = self.authtoken
+      auth = self.auth
     },
     data = content
   }
@@ -90,7 +90,7 @@ function Firebase:remove(node)
     method = 'DELETE',
     url = self:nodePath(node),
     params = {
-      auth = self.authtoken
+      auth = self.auth
     }
   }
   return req.statuscode
