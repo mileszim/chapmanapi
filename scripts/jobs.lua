@@ -6,8 +6,8 @@ local firebase = require('mileszim/chapmanapi/modules/firebase.lua')
 local node = 'jobs'
 
 firebase:init({
-	root = storage.FIREBASE_PATH,
-	auth = storage.FIREBASE_SECRET
+  root = storage.FIREBASE_PATH,
+  auth = storage.FIREBASE_SECRET
 })
 
 

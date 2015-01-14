@@ -7,16 +7,16 @@ local REQUEST_URL = 'https://webfarm.chapman.edu/parkingservice/parkingservice/c
 local FB_NODE = 'parking'
 
 firebase:init({
-	root = storage.FIREBASE_PATH,
-	auth = storage.FIREBASE_SECRET
+  root = storage.FIREBASE_PATH,
+  auth = storage.FIREBASE_SECRET
 })
 
 
 -- Fetch
 local req = http.request { url = REQUEST_URL }
 if req.statuscode ~= 200 then
-	log('Bad request: ' .. req.statuscode)
-	return req.statuscode
+  log('Bad request: ' .. req.statuscode)
+  return req.statuscode
 end
 
 
